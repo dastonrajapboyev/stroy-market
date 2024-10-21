@@ -157,6 +157,10 @@
 .li2 {
   margin-left: 150px;
 }
+.product-img {
+  width: 280px;
+  height: 300px;
+}
 
 @media (max-width: 1024px) {
   .box1 {
@@ -197,6 +201,16 @@
   .search .button {
     width: 100%;
     margin-left: 0;
+  }
+  .product1 {
+    max-width: 500px;
+    width: 100%;
+    padding: 0 20px;
+  }
+  .product-img {
+    object-fit: cover;
+    max-width: 500px;
+    width: 100%;
   }
 }
 

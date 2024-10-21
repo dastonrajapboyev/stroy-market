@@ -78,9 +78,10 @@ function Cart() {
           <div className="product1" key={product.id}>
             <div className="">
               <img
+                className="product-img"
                 src={product.image}
                 alt={product.name}
-                style={{ height: "300px" }}
+                // style={{ width: "280px", height: "300px" }}
               />
             </div>
             <div className="t">
