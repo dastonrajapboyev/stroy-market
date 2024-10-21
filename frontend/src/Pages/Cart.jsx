@@ -76,11 +76,11 @@ function Cart() {
       <div className="products">
         {products.map((product) => (
           <div className="product1" key={product.id}>
-            <div className="border">
+            <div className="">
               <img
                 src={product.image}
                 alt={product.name}
-                style={{ width: "280px", height: "300px" }}
+                style={{ height: "300px" }}
               />
             </div>
             <div className="t">

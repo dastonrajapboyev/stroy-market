@@ -24,7 +24,7 @@
   border: 2px solid #22c322;
   margin-top: 20px;
   width: 300px;
-  height: 30px;
+  height: 40px;
   text-align: center;
 }
 
@@ -42,9 +42,11 @@
   font-size: 20px;
   margin-top: 16px;
   color: white;
+  padding: 0;
 }
 
 .h2 {
+  margin-top: 20px;
   color: #269d26;
   font-size: 30px;
 }
@@ -81,7 +83,7 @@
 
 .product1 h2 {
   font-size: 17px;
-  margin-left: 10px;
+  /* margin-left: 10px; */
 }
 
 .carticon {
@@ -113,20 +115,27 @@
   display: flex;
   flex-wrap: wrap; /* Qatorni to'ldirish imkonini beradi */
   justify-content: center; /* Mahsulotlarni yuqoriga joylashtirish */
+  gap: 40px;
   margin: 0; /* Marginlarni 0 ga o'zgartirish */
   margin-bottom: 200px;
   margin-top: 100px;
 }
 
 .product1 {
-  flex: 1 1 calc(33.333% - 20px); /* Har bir mahsulot 33.333% kenglikni egallaydi va 20px bo'shliq */
+  /* Har bir mahsulot 33.333% kenglikni egallaydi va 20px bo'shliq */
   box-sizing: border-box; /* Padding va borderlarni hisobga olish */
   margin-bottom: 20px; /* Pastga bo'shliq qo'shish */
   max-width: 300px; /* Mahsulotning maksimal kengligini belgilash */
   height: auto; /* Mahsulot balandligini avtomatik qiling */
-  margin-left: -20px;
-}
 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 1px solid red;
+}
+.product1 img {
+  border-radius: 5px;
+}
 .li3 {
   align-items: center;
   justify-content: center;
@@ -153,27 +162,15 @@
   .box1 {
     margin-left: -100px;
   }
-  .hr2 {
-    width: 800px;
-    margin-left: 100px;
-  }
-  .t {
+
+  /* .t {
     margin-left: -100px;
-  }
+  } */
 }
 
 @media (max-width: 600px) {
-  .search {
-    margin-left: -40px;
-  }
   .h2 {
-    width: 350px;
-    margin-left: 40px;
     font-size: 16px;
-  }
-  .hr2 {
-    width: 450px;
-    margin-left: 60px;
   }
   .li3 {
     margin-right: -300px;
@@ -194,12 +191,16 @@
   .li3 {
     margin-left: -300px;
   }
+  .search .input {
+    width: 100%;
+  }
+  .search .button {
+    width: 100%;
+    margin-left: 0;
+  }
 }
 
 @media (max-width: 400px) {
-  .search {
-    margin-left: -100px;
-  }
   .h2 {
     margin-left: 20px;
   }
@@ -220,10 +221,6 @@
   }
   .li1 {
     width: 140px;
-    margin-left: 40px;
-  }
-  .hr2 {
-    width: 300px;
     margin-left: 40px;
   }
 }
