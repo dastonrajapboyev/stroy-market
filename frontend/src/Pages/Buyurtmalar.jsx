@@ -1,57 +1,62 @@
-import React, { useEffect, useState } from 'react'
-import axios from 'axios'
-import './Css/Buyurtmalar.css'
+import React, { useEffect, useState } from "react";
+
+import axios from "axios";
+import "./Css/Buyurtmalar.css";
+import { useNavigate } from "react-router-dom";
 
 const Buyurtmalar = () => {
-  const [orders, setOrders] = useState([])
-  const [loading, setLoading] = useState(true)
-  const [products, setProducts] = useState([])
-  const [error, setError] = useState(null)
+  const [orders, setOrders] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [products, setProducts] = useState([]);
+  const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   // Fetching orders with authorization token
   useEffect(() => {
     const fetchOrders = async () => {
-      setLoading(true)
-      setError(null)
+      setLoading(true);
+      setError(null);
       try {
         // Get the token from localStorage
-        const token = localStorage.getItem('userToken')
+        const token = localStorage.getItem("userToken");
 
         // If token is not found, throw error
+        if (token) navigate("/buyurtmalar");
         if (!token) {
-          setError('Authorization token not found.')
-          setLoading(false)
-          return
+          setError("Authorization token not found.");
+          navigate("/hisobim");
+          setLoading(false);
+          return;
         }
 
         // Set up headers with authorization token
         const headers = {
           Authorization: `Bearer ${token}`,
-        }
+        };
 
         // Make the GET request with axios
         const response = await axios.get(
-          'https://qizildasturchi.uz/api/orders',
+          "https://qizildasturchi.uz/api/orders",
           { headers }
-        )
+        );
 
         // Set orders data
-        setOrders(response.data)
-        setLoading(false)
+        setOrders(response.data);
+        setLoading(false);
       } catch (error) {
-        console.error('Error fetching orders:', error)
-        setError('Failed to load orders.')
-        setLoading(false)
+        console.error("Error fetching orders:", error);
+        setError("Failed to load orders.");
+        setLoading(false);
       }
-    }
+    };
 
-    fetchOrders()
-  }, [])
+    fetchOrders();
+  }, []);
 
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const token = localStorage.getItem('userToken')
+        const token = localStorage.getItem("userToken");
         orders.data?.map((order) =>
           order.products?.map(async (product) => {
             const response = await axios.get(
@@ -61,47 +66,47 @@ const Buyurtmalar = () => {
                   Authorization: `Bearer ${token}`,
                 },
               }
-            )
+            );
 
-            setProducts(response.data)
+            setProducts(response.data);
           })
-        )
+        );
       } catch (err) {
-        setError(err.message)
+        setError(err.message);
       } finally {
-        setLoading(false)
+        setLoading(false);
       }
-    }
+    };
 
-    fetchCategories()
+    fetchCategories();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, []);
 
   if (loading) {
-    return <div>Loading...</div>
+    return <div>Loading...</div>;
   }
 
   if (error) {
-    return <div>{error}</div>
+    return <div>{error}</div>;
   }
 
   const getStatusText = (status) => {
     switch (status) {
       case 1:
-        return 'Yangi'
+        return "Yangi";
       case 2:
-        return 'Qabul qilingan'
+        return "Qabul qilingan";
       case 3:
-        return 'Yetqazib berilgan'
+        return "Yetqazib berilgan";
       case 4:
-        return "To'lov qilingan"
+        return "To'lov qilingan";
       case 0:
-        return 'Bekor qilingan'
+        return "Bekor qilingan";
       default:
-        return "Noma'lum"
+        return "Noma'lum";
     }
-  }
-  console.log(products)
+  };
+  console.log(products);
   return (
     <div className="buyurtmalar-page">
       <h1>Sizning barcha buyurtmalaringiz</h1>
@@ -114,12 +119,12 @@ const Buyurtmalar = () => {
               <div className="order-details">
                 <span>Buyurtma holati: {getStatusText(order.status)}</span>
                 <span>
-                  To'lov holati:{' '}
+                  To'lov holati:{" "}
                   {order.payment_status === 1 ? "To'lanmagan" : "To'langan"}
                 </span>
 
                 <span>
-                  Buyurtma qilingan vaqt:{' '}
+                  Buyurtma qilingan vaqt:{" "}
                   {new Date(order.created_at).toLocaleDateString()}
                 </span>
                 <span>Umumiy summa: {order.total_sum} so'm</span>
@@ -132,7 +137,7 @@ const Buyurtmalar = () => {
                         <span>Nomi: {products.data?.name}</span>
                       </div>
                       <div>
-                        <span>Miqdor: {product.count} ta</span>
+                        <span>Miqdor: {products.count} ta</span>
                       </div>
                       <div>
                         <span>Jami summa: {products.data?.price} so'm</span>
@@ -147,7 +152,7 @@ const Buyurtmalar = () => {
         )}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Buyurtmalar
+export default Buyurtmalar;
