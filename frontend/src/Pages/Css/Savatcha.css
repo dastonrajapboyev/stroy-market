@@ -10,6 +10,11 @@
   margin-bottom: 80px;
 }
 
+h1 {
+  font-size: 22px;
+  font-weight: bold;
+}
+
 .savatcha-container {
   max-width: 1440px;
   width: 90%;
