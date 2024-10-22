@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-
 import axios from 'axios'
 import './Css/Buyurtmalar.css'
 import { useNavigate } from 'react-router-dom'
@@ -16,11 +15,9 @@ const Buyurtmalar = () => {
       setLoading(true)
       setError(null)
       try {
-        // Get the token from localStorage
         const token = localStorage.getItem('userToken')
 
-        // If token is not found, throw error
-        if (token) navigate('/buyurtmalar')
+        // If token is not found, redirect to '/hisobim'
         if (!token) {
           setError('Authorization token not found.')
           navigate('/hisobim')
@@ -39,10 +36,18 @@ const Buyurtmalar = () => {
           { headers }
         )
 
+        if (response.status === 401) {
+          // JWT expired or invalid token
+          alert('Your session has expired. Please log in again.')
+          navigate('/hisobim')
+          return
+        }
+
         // Set orders data
         setOrders(response.data)
         setLoading(false)
       } catch (error) {
+        navigate('/hisobim')
         console.error('Error fetching orders:', error)
         setError('Failed to load orders.')
         setLoading(false)
@@ -50,7 +55,7 @@ const Buyurtmalar = () => {
     }
 
     fetchOrders()
-  }, [])
+  }, [navigate])
 
   if (loading) {
     return <div>Loading...</div>
@@ -76,15 +81,12 @@ const Buyurtmalar = () => {
         return "Noma'lum"
     }
   }
-
-  // console.log(orders)
-
+  console.log(orders)
   return (
     <div className="buyurtmalar-page">
-      <h1>Sizning barcha buyurtmalaringiz</h1>
       <div className="order-list">
-        {orders.length === 0 ? (
-          <p>No orders available</p>
+        {orders.data.length === 0 ? (
+          <h1>Sizda hozircha buyurtmalar mavjud emas</h1>
         ) : (
           orders.data?.map((order) => (
             <div key={order.id} className="order-card">

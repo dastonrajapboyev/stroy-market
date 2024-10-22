@@ -1,86 +1,59 @@
-.div {
-  width: 90px;
-  height: 500px;
-  background: linear-gradient(180deg, #149108 0%, #d3ffce 46.5%, #53da46 100%);
-  margin-left: 150px;
-  margin-top: 150px;
-  border-radius: 100px;
-}
-.img {
-  width: 60px;
-  height: 60px;
-  background-color: aliceblue;
-  margin-left: 15px;
-  border-radius: 120px;
-  margin-top: 15px;
-}
-.images {
-  margin-top: 25px;
-}
-.login2 {
-  width: 650px;
-  height: 500px;
-  border: 10px solid rgb(6, 193, 6);
-  margin-left: 510px;
-  margin-top: -440px;
-  border-radius: 50px;
-  background-color: rgb(238, 244, 250);
-}
-.login2 .input {
-  border-radius: 20px;
-  border: 2px solid #f6f6f6;
-  margin-left: 105px;
-  margin-top: 20px;
-  width: 350px;
-  height: 50px;
-  text-align: center;
-  margin-left: 140px;
-}
-.input::placeholder {
-  font-size: 20px;
-  text-align: center;
+.Top {
+  display: flex;
+  justify-content: space-between; /* Space between the menu button and sidebar */
+  padding: 20px; /* Add some padding */
 }
 
-.btn .button1 {
-  margin-top: 20px;
-  border: 2px solid white;
-  border-radius: 20px;
-  width: 350px;
-  height: 50px;
-  margin-left: 110px;
-  font-size: 20px;
-  font-family: monospace;
-  background: #a5fe9d;
-
-  margin-top: 20px;
-  margin-left: 140px;
+.menu-button {
+  font-size: 30px; /* Adjust size of the menu button */
+  background: none; /* No background */
+  border: none; /* No border */
+  cursor: pointer; /* Pointer cursor */
+  display: none;
 }
 
-.btn .button2 {
-  margin-top: 20px;
-  border: 2px solid white;
-  border-radius: 20px;
-  width: 350px;
-  height: 50px;
-  margin-left: 110px;
-  font-size: 20px;
-  font-family: monospace;
-  background: #f59898;
+/* Show the menu button on mobile devices */
+@media (max-width: 768px) {
+  .menu-button {
+    display: block; /* Show the menu button */
+  }
 
-  margin-left: 140px;
+  .div {
+    width: 80%; /* Full width for sidebar on mobile */
+    height: auto; /* Change height to auto for flexibility */
+    position: absolute; /* Position it over the content */
+    left: 0; /* Align to the left */
+    top: 0; /* Align to the top */
+    z-index: 10; /* Ensure it’s above other content */
+    border-radius: 0; /* Remove border radius for mobile */
+  }
+
+  .container_ul {
+    flex-direction: column; /* Stack items vertically */
+    align-items: flex-start; /* Align items to the start */
+  }
+
+  .container_ul .r {
+    margin-bottom: 10px; /* Space between items */
+  }
 }
 
-.inp {
-  margin-top: 90px;
-}
-
-.container_ul .r img {
-  width: 50px;
-  height: 50px;
-  margin-top: 23px;
-  margin-left: -20px;
+.container_ul {
+  padding: 0; /* Remove default padding */
+  margin: 0; /* Remove default margin */
+  display: flex;
+  flex-direction: column; /* Stack items vertically */
+  align-items: center; /* Center align the items */
 }
 
 .container_ul .r {
-  list-style-type: none;
+  list-style-type: none; /* Remove bullets */
+  margin-bottom: 20px; /* Add spacing between items */
 }
+
+.container_ul .r img {
+  width: 50px; /* Set a consistent width */
+  height: 50px; /* Set a consistent height */
+}
+
+/* Existing styles from your previous CSS... */

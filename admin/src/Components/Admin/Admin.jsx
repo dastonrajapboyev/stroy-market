@@ -10,7 +10,7 @@ function Admin() {
   }
 
   return (
-    <div>
+    <div className="admin-container">
       <div className="top">
         <div className="img" onClick={handleImageClick}>
           <img src={logopng} alt="Logo" />
