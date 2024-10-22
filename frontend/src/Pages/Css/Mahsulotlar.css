@@ -14,7 +14,7 @@
   flex-wrap: wrap;
   justify-content: center;
 }
-.mavjudmas {
+.absolute-text {
   font-size: 22px;
   margin-top: 200px;
 }
@@ -283,9 +283,7 @@
   .mahsulotlar {
     /* display: grid; */
   }
-  .mahsulot-wrapper aside {
-    width: 150px;
-  }
+
   .div10 {
     /* margin-left: 20px; */
     width: 100%;
